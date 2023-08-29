@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/validation.css">
+    <title>Usuários - validações</title>
+</head>
+<body>
+<div class="container">
+    <h1>Listagem de Usuários</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Conhecimentos</th>
+            <th>Ações</th>
+        </tr>
+        <tr th:each="user : ${user}">
+            <td>[[${user.name}]]</td>
+            <td>[[${user.email}]]</td>
+            <td>[[${user.cpf}]]</td>
+            <td>[[${user.phone}]]</td>
+            <td>[[${user.learning}]]</td>
+            <td>
+
+                <div class="button-container">
+                    <form th:action="@{/colaborador/validar/{id}(id=${user.id})}" method="post">
+                        <input type="hidden" name="_method" value="post"/>
+                        <button type="submit" class="btn-validar">Validar</button>
+                    </form>
+
+                    <form th:action="@{/colaborador/validar/{id}(id=${user.id})}" method="post">
+                        <input type="hidden" name="_method" value="post"/>
+                        <button class="btn-nao-validar">Não Validar</button>
+                    </form>
+                </div>
+
+            </td>
+
+            <td></td>
+        </tr>
+
+    </table>
+    <h4><a th:href="@{/registros}">Registros</a></h4>
+    <h4><a th:href="@{/colaborador/registrar}">Registrar novo</a></h4>
+</div>
+</body>
+</html>
